@@ -7,8 +7,8 @@ import { useRef, useMemo } from 'react'
 import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 
-// URL du modele 3D heberge sur GitHub Releases
-const MODEL_URL = 'https://github.com/Jeremie-pires/Jeremie-pires.github.io/releases/download/v1.0.0/chambre.glb'
+// URL du modele 3D local
+const MODEL_URL = '/models/chambre.glb'
 
 interface RoomModelProps {
   [key: string]: unknown;
