@@ -66,11 +66,32 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
             color: '#555', 
             lineHeight: '1.8',
             paddingLeft: '20px',
-            marginBottom: '20px'
+            marginBottom: '20px',
+            listStyle: 'none'
           }}>
             {content.items.map((item, index) => (
-              <li key={index} style={{ marginBottom: '10px' }}>
-                {item}
+              <li 
+                key={index} 
+                style={{ 
+                  marginBottom: '10px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}
+              >
+                {item.icon && (
+                  <img 
+                    src={item.icon} 
+                    alt=""
+                    style={{ 
+                      width: '20px', 
+                      height: '20px',
+                      objectFit: 'contain',
+                      flexShrink: 0
+                    }} 
+                  />
+                )}
+                <span style={{ whiteSpace: 'pre-line' }}>{item.text}</span>
               </li>
             ))}
           </ul>
@@ -84,8 +105,11 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                download={link.download}
                 style={{
-                  display: 'inline-block',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '10px',
                   marginRight: '15px',
                   marginBottom: '10px',
                   padding: '10px 20px',
@@ -100,7 +124,18 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
                 onMouseOver={(e) => e.currentTarget.style.background = '#2980b9'}
                 onMouseOut={(e) => e.currentTarget.style.background = '#3498db'}
               >
-                {link.icon && `${link.icon} `}{link.label}
+                {link.icon && (
+                  <img 
+                    src={link.icon} 
+                    alt={link.label}
+                    style={{ 
+                      width: '20px', 
+                      height: '20px',
+                      objectFit: 'contain'
+                    }} 
+                  />
+                )}
+                {link.label}
               </a>
             ))}
           </div>

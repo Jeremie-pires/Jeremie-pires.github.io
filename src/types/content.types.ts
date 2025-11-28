@@ -1,8 +1,13 @@
 // Types pour le contenu des éléments interactifs
+export interface ModalItem {
+  icon?: string;
+  text: string;
+}
+
 export interface ModalContent {
   title: string;
   description: string;
-  items?: string[];
+  items?: ModalItem[];
   links?: Link[];
 }
 
@@ -10,6 +15,7 @@ export interface Link {
   label: string;
   url: string;
   icon?: string;
+  download?: string;
 }
 
 // Props pour les modèles 3D interactifs

@@ -1,13 +1,17 @@
 import type { ModalContent } from '../../types/content.types';
 
 export const schoolbagContent: ModalContent = {
-  title: "Mon Parcours",
-  description: "Ma formation et mes expériences académiques",
+  title: "Mon parcours scolaire",
+  description: "Mes formations et expériences jusqu'ici :",
   items: [
-    "🏫 Licence Informatique - Université de Nantes (en cours)",
-    "📖 DUT Informatique - IUT de Nantes (2023)",
-    "🏆 Baccalauréat Scientifique - Mention Bien (2021)",
-    "💡 Projets académiques : développement web, bases de données, algorithmes",
-    "🌟 Certifications : GitHub Student Developer Pack"
+    {
+      text: "Lycée La Joliverie (2021-2023) - Baccalauréat STI2D obtenu Mention Très Bien",
+    },
+    {
+      text: "Cycle préparatoire en initial à Sup de Vinci Nantes (2023-2025)"
+    },
+    {
+      text: "Actuellement en 3ème année chez Sup de Vinci Nantes, en option développement"
+    }
   ]
 };

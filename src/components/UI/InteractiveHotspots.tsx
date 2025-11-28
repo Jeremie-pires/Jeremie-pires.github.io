@@ -1,15 +1,15 @@
-import { Html } from '@react-three/drei';
-import { useState } from 'react';
-import type { ModalContent } from '../../types/content.types';
+import { Html } from "@react-three/drei";
+import { useState } from "react";
+import type { ModalContent } from "../../types/content.types";
 
 // Import des contenus
-import { bedContent } from '../Bed/bedContent';
-import { computerContent } from '../Desk/Computer/computerContent';
-import { phoneContent } from '../Desk/Phone/phoneContent';
-import { pianoContent } from '../Piano/pianoContent';
-import { bookshelfContent } from '../Bookshelf/bookshelfContent';
-import { schoolbagContent } from '../Schoolbag/schoolbagContent';
-import { cvContent } from '../Desk/CV/cvContent';
+import { bedContent } from "../Bed/bedContent";
+import { computerContent } from "../Desk/Computer/computerContent";
+import { phoneContent } from "../Desk/Phone/phoneContent";
+import { pianoContent } from "../Piano/pianoContent";
+import { bookshelfContent } from "../Bookshelf/bookshelfContent";
+import { schoolbagContent } from "../Schoolbag/schoolbagContent";
+import { cvContent } from "../Desk/CV/cvContent";
 
 interface Hotspot {
   id: string;
@@ -22,54 +22,54 @@ interface Hotspot {
 // Définition des points d'intérêt avec leurs positions dans la scène
 const HOTSPOTS: Hotspot[] = [
   {
-    id: 'bed',
+    id: "bed",
     position: [0.8, 0.4, -1.2],
-    icon: '🛏️',
-    label: 'Repos',
-    content: bedContent
+    icon: "🛏️",
+    label: "Repos",
+    content: bedContent,
   },
   {
-    id: 'computer',
+    id: "computer",
     position: [0.35, 1.2, -3.1],
-    icon: '💻',
-    label: 'Projets',
-    content: computerContent
+    icon: "💻",
+    label: "Projets",
+    content: computerContent,
   },
   {
-    id: 'phone',
+    id: "phone",
     position: [0.7, 0.9, -2.4],
-    icon: '📱',
-    label: 'Contact',
-    content: phoneContent
+    icon: "📱",
+    label: "Contact",
+    content: phoneContent,
   },
   {
-    id: 'piano',
+    id: "piano",
     position: [1.4, 0.9, -4.1],
-    icon: '🎹',
-    label: 'Passions',
-    content: pianoContent
+    icon: "🎹",
+    label: "Passions",
+    content: pianoContent,
   },
   {
-    id: 'bookshelf',
+    id: "bookshelf",
     position: [2.6, 1.4, -3.8],
-    icon: '📚',
-    label: 'Compétences',
-    content: bookshelfContent
+    icon: "📚",
+    label: "Compétences",
+    content: bookshelfContent,
   },
   {
-    id: 'schoolbag',
+    id: "schoolbag",
     position: [1.1, 0.3, -2],
-    icon: '🎒',
-    label: 'Parcours',
-    content: schoolbagContent
+    icon: "🎒",
+    label: "Parcours",
+    content: schoolbagContent,
   },
   {
-    id: 'cv',
+    id: "cv",
     position: [0.4, 0.9, -2.7],
-    icon: '📄',
-    label: 'CV',
-    content: cvContent
-  }
+    icon: "📄",
+    label: "CV",
+    content: cvContent,
+  },
 ];
 
 interface HotspotMarkerProps {
@@ -86,8 +86,8 @@ function HotspotMarker({ hotspot, onInteract }: HotspotMarkerProps) {
         center
         distanceFactor={3}
         style={{
-          pointerEvents: 'auto',
-          cursor: 'pointer',
+          pointerEvents: "auto",
+          cursor: "pointer",
         }}
       >
         <div
@@ -95,47 +95,49 @@ function HotspotMarker({ hotspot, onInteract }: HotspotMarkerProps) {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '4px',
-            transition: 'transform 0.2s ease',
-            transform: isHovered ? 'scale(1.2)' : 'scale(1)',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "4px",
+            transition: "transform 0.2s ease",
+            transform: isHovered ? "scale(1.2)" : "scale(1)",
           }}
         >
           {/* Icône principale */}
           <div
             style={{
-              width: '48px',
-              height: '48px',
-              borderRadius: '50%',
-              backgroundColor: isHovered ? 'rgba(99, 102, 241, 0.95)' : 'rgba(30, 30, 50, 0.85)',
-              border: '2px solid rgba(255, 255, 255, 0.8)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '24px',
-              boxShadow: isHovered 
-                ? '0 0 20px rgba(99, 102, 241, 0.6), 0 4px 12px rgba(0,0,0,0.4)'
-                : '0 4px 12px rgba(0,0,0,0.3)',
-              animation: 'pulse 2s ease-in-out infinite',
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              backgroundColor: isHovered
+                ? "rgba(99, 102, 241, 0.95)"
+                : "rgba(30, 30, 50, 0.85)",
+              border: "2px solid rgba(255, 255, 255, 0.8)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "24px",
+              boxShadow: isHovered
+                ? "0 0 20px rgba(99, 102, 241, 0.6), 0 4px 12px rgba(0,0,0,0.4)"
+                : "0 4px 12px rgba(0,0,0,0.3)",
+              animation: "pulse 2s ease-in-out infinite",
             }}
           >
             {hotspot.icon}
           </div>
-          
+
           {/* Label au survol */}
           {isHovered && (
             <div
               style={{
-                backgroundColor: 'rgba(30, 30, 50, 0.95)',
-                color: 'white',
-                padding: '4px 12px',
-                borderRadius: '12px',
-                fontSize: '12px',
-                fontWeight: '500',
-                whiteSpace: 'nowrap',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                backgroundColor: "rgba(30, 30, 50, 0.95)",
+                color: "white",
+                padding: "4px 12px",
+                borderRadius: "12px",
+                fontSize: "12px",
+                fontWeight: "500",
+                whiteSpace: "nowrap",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
               }}
             >
               {hotspot.label}
@@ -143,7 +145,7 @@ function HotspotMarker({ hotspot, onInteract }: HotspotMarkerProps) {
           )}
         </div>
       </Html>
-      
+
       {/* Style pour l'animation */}
       <Html>
         <style>{`
@@ -166,9 +168,12 @@ interface InteractiveHotspotsProps {
   isVisible?: boolean;
 }
 
-export function InteractiveHotspots({ onInteract, isVisible = true }: InteractiveHotspotsProps) {
+export function InteractiveHotspots({
+  onInteract,
+  isVisible = true,
+}: InteractiveHotspotsProps) {
   if (!isVisible) return null;
-  
+
   return (
     <group>
       {HOTSPOTS.map((hotspot) => (
