@@ -7,6 +7,9 @@ import { useRef, useMemo } from 'react'
 import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 
+// URL du modele 3D heberge sur GitHub Releases
+const MODEL_URL = 'https://github.com/Jeremie-pires/Jeremie-pires.github.io/releases/download/v1.0.0/chambre.glb'
+
 interface RoomModelProps {
   [key: string]: unknown;
 }
@@ -14,8 +17,8 @@ interface RoomModelProps {
 export function RoomModel(props: RoomModelProps) {
   const groupRef = useRef<THREE.Group>(null)
   
-  // Charger le modele original (62MB) pour preserver tous les materiaux
-  const { scene } = useGLTF('/models/chambre.glb')
+  // Charger le modele depuis GitHub Releases
+  const { scene } = useGLTF(MODEL_URL)
   
   // Cloner la scene pour eviter les problemes de reference
   const clonedScene = useMemo(() => {
@@ -77,4 +80,4 @@ export function RoomModel(props: RoomModelProps) {
   )
 }
 
-useGLTF.preload('/models/chambre.glb')
+useGLTF.preload(MODEL_URL)
