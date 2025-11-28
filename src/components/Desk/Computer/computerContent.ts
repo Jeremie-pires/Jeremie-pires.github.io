@@ -13,7 +13,7 @@ export const computerContent: ModalContent = {
   links: [
     {
       label: "Voir mes projets sur GitHub",
-      url: "https://github.com/ton-username",
+      url: "https://github.com/jeremie-pires",
       icon: "🐙"
     }
   ]

@@ -1,7 +1,7 @@
 import type { ModalContent } from '../../types/content.types';
 
 export const schoolbagContent: ModalContent = {
-  title: "🎓 Mon Parcours",
+  title: "Mon Parcours",
   description: "Ma formation et mes expériences académiques",
   items: [
     "🏫 Licence Informatique - Université de Nantes (en cours)",

@@ -29,12 +29,12 @@ const Instructions: React.FC = () => {
       
       <div style={{ lineHeight: '1.8' }}>
         <p style={{ margin: '8px 0', display: 'flex', alignItems: 'center' }}>
-          <span style={{ marginRight: '8px' }}>🖱️</span>
-          <span><strong>Clic gauche + glisser</strong> : Rotation</span>
+          <span style={{ marginRight: '8px' }}>⌨️</span>
+          <span><strong>ZQSD</strong> : Se déplacer</span>
         </p>
         <p style={{ margin: '8px 0', display: 'flex', alignItems: 'center' }}>
           <span style={{ marginRight: '8px' }}>🖱️</span>
-          <span><strong>Clic droit + glisser</strong> : Déplacement</span>
+          <span><strong>Clic gauche + glisser</strong> : Regarder autour</span>
         </p>
         <p style={{ margin: '8px 0', display: 'flex', alignItems: 'center' }}>
           <span style={{ marginRight: '8px' }}>🔄</span>
