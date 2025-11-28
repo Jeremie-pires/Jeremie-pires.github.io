@@ -3,7 +3,6 @@ import { useState } from "react";
 import type { ModalContent } from "../../types/content.types";
 
 // Import des contenus
-import { bedContent } from "../Bed/bedContent";
 import { computerContent } from "../Desk/Computer/computerContent";
 import { phoneContent } from "../Desk/Phone/phoneContent";
 import { pianoContent } from "../Piano/pianoContent";
@@ -11,10 +10,19 @@ import { bookshelfContent } from "../Bookshelf/bookshelfContent";
 import { schoolbagContent } from "../Schoolbag/schoolbagContent";
 import { cvContent } from "../Desk/CV/cvContent";
 
+// Import des icones
+import computerIcon from "../../assets/images/icons/computer.png";
+import phoneIcon from "../../assets/images/icons/phone.png";
+import pianoIconImg from "../../assets/images/icons/piano.png";
+import bookshelfIcon from "../../assets/images/icons/books.png";
+import schoolbagIcon from "../../assets/images/icons/backpack.png";
+import cvIcon from "../../assets/images/icons/cv.png";
+
 interface Hotspot {
   id: string;
   position: [number, number, number];
-  icon: string;
+  icon: string; // Peut être un emoji ou un chemin d'image
+  isImage?: boolean; // true si c'est une image, false si c'est un emoji
   label: string;
   content: ModalContent;
 }
@@ -22,51 +30,50 @@ interface Hotspot {
 // Définition des points d'intérêt avec leurs positions dans la scène
 const HOTSPOTS: Hotspot[] = [
   {
-    id: "bed",
-    position: [0.8, 0.4, -1.2],
-    icon: "🛏️",
-    label: "Repos",
-    content: bedContent,
-  },
-  {
     id: "computer",
     position: [0.35, 1.2, -3.1],
-    icon: "💻",
+    icon: computerIcon,
+    isImage: true,
     label: "Projets",
     content: computerContent,
   },
   {
     id: "phone",
     position: [0.7, 0.9, -2.4],
-    icon: "📱",
+    icon: phoneIcon,
+    isImage: true,
     label: "Contact",
     content: phoneContent,
   },
   {
     id: "piano",
     position: [1.4, 0.9, -4.1],
-    icon: "🎹",
+    icon: pianoIconImg,
+    isImage: true,
     label: "Passions",
     content: pianoContent,
   },
   {
     id: "bookshelf",
     position: [2.6, 1.4, -3.8],
-    icon: "📚",
+    icon: bookshelfIcon,
+    isImage: true,
     label: "Compétences",
     content: bookshelfContent,
   },
   {
     id: "schoolbag",
     position: [1.1, 0.3, -2],
-    icon: "🎒",
+    icon: schoolbagIcon,
+    isImage: true,
     label: "Parcours",
     content: schoolbagContent,
   },
   {
     id: "cv",
     position: [0.4, 0.9, -2.7],
-    icon: "📄",
+    icon: cvIcon,
+    isImage: true,
     label: "CV",
     content: cvContent,
   },
@@ -111,7 +118,7 @@ function HotspotMarker({ hotspot, onInteract }: HotspotMarkerProps) {
               borderRadius: "50%",
               backgroundColor: isHovered
                 ? "rgba(99, 102, 241, 0.95)"
-                : "rgba(30, 30, 50, 0.85)",
+                : "rgba(82, 82, 105, 0.85)",
               border: "2px solid rgba(255, 255, 255, 0.8)",
               display: "flex",
               alignItems: "center",
@@ -121,16 +128,29 @@ function HotspotMarker({ hotspot, onInteract }: HotspotMarkerProps) {
                 ? "0 0 20px rgba(99, 102, 241, 0.6), 0 4px 12px rgba(0,0,0,0.4)"
                 : "0 4px 12px rgba(0,0,0,0.3)",
               animation: "pulse 2s ease-in-out infinite",
+              overflow: "hidden",
             }}
           >
-            {hotspot.icon}
+            {hotspot.isImage ? (
+              <img
+                src={hotspot.icon}
+                alt={hotspot.label}
+                style={{
+                  width: "60%",
+                  height: "60%",
+                  objectFit: "contain",
+                }}
+              />
+            ) : (
+              hotspot.icon
+            )}
           </div>
 
           {/* Label au survol */}
           {isHovered && (
             <div
               style={{
-                backgroundColor: "rgba(30, 30, 50, 0.95)",
+                backgroundColor: "rgba(38, 38, 151, 0.95)",
                 color: "white",
                 padding: "4px 12px",
                 borderRadius: "12px",
