@@ -12,9 +12,6 @@ dist
 dist-ssr
 *.local
 
-# Fichiers temporaires générés
-Chambre.tsx
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

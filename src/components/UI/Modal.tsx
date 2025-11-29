@@ -7,11 +7,24 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
+  // Handle Escape key to close modal
+  React.useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [onClose]);
+
   if (!content) return null;
 
   return (
     <>
       {/* Overlay */}
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
       <div
         onClick={onClose}
         style={{
@@ -79,7 +92,7 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
           >
             {content.items.map((item, index) => (
               <li
-                key={index}
+                key={`item-${index}-${item.text.substring(0, 20)}`}
                 style={{
                   marginBottom: "10px",
                   display: "flex",
@@ -109,7 +122,7 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
           <div style={{ marginTop: "25px" }}>
             {content.links.map((link, index) => (
               <a
-                key={index}
+                key={`link-${index}-${link.label}`}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -135,6 +148,8 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
                 onMouseOut={(e) =>
                   (e.currentTarget.style.background = "#3498db")
                 }
+                onFocus={(e) => (e.currentTarget.style.background = "#2980b9")}
+                onBlur={(e) => (e.currentTarget.style.background = "#3498db")}
               >
                 {link.icon && (
                   <img
@@ -169,6 +184,8 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
           }}
           onMouseOver={(e) => (e.currentTarget.style.background = "#c0392b")}
           onMouseOut={(e) => (e.currentTarget.style.background = "#e74c3c")}
+          onFocus={(e) => (e.currentTarget.style.background = "#c0392b")}
+          onBlur={(e) => (e.currentTarget.style.background = "#e74c3c")}
         >
           Fermer
         </button>

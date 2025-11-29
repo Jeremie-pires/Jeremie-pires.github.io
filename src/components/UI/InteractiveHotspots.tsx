@@ -80,15 +80,15 @@ const HOTSPOTS: Hotspot[] = [
 ];
 
 interface HotspotMarkerProps {
-  hotspot: Hotspot;
-  onInteract: (content: ModalContent) => void;
+  readonly hotspot: Hotspot;
+  readonly onInteract: (content: ModalContent) => void;
 }
 
-function HotspotMarker({ hotspot, onInteract }: HotspotMarkerProps) {
+function HotspotMarker({ hotspot, onInteract }: Readonly<HotspotMarkerProps>) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <group position={hotspot.position}>
+    <group position={hotspot.position}> {/* NOSONAR - position is valid for @react-three/fiber group */}
       <Html
         center
         distanceFactor={3}
@@ -97,10 +97,18 @@ function HotspotMarker({ hotspot, onInteract }: HotspotMarkerProps) {
           cursor: "pointer",
         }}
       >
-        <div
+        <button
           onClick={() => onInteract(hotspot.content)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              onInteract(hotspot.content);
+            }
+          }}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          onFocus={() => setIsHovered(true)}
+          onBlur={() => setIsHovered(false)}
           style={{
             display: "flex",
             flexDirection: "column",
@@ -108,6 +116,10 @@ function HotspotMarker({ hotspot, onInteract }: HotspotMarkerProps) {
             gap: "4px",
             transition: "transform 0.2s ease",
             transform: isHovered ? "scale(1.2)" : "scale(1)",
+            background: "none",
+            border: "none",
+            padding: 0,
+            cursor: "pointer",
           }}
         >
           {/* Icône principale */}
@@ -163,9 +175,8 @@ function HotspotMarker({ hotspot, onInteract }: HotspotMarkerProps) {
               {hotspot.label}
             </div>
           )}
-        </div>
+        </button>
       </Html>
-
       {/* Style pour l'animation */}
       <Html>
         <style>{`
@@ -184,14 +195,14 @@ function HotspotMarker({ hotspot, onInteract }: HotspotMarkerProps) {
 }
 
 interface InteractiveHotspotsProps {
-  onInteract: (content: ModalContent) => void;
-  isVisible?: boolean;
+  readonly onInteract: (content: ModalContent) => void;
+  readonly isVisible?: boolean;
 }
 
 export function InteractiveHotspots({
   onInteract,
   isVisible = true,
-}: InteractiveHotspotsProps) {
+}: Readonly<InteractiveHotspotsProps>) {
   if (!isVisible) return null;
 
   return (

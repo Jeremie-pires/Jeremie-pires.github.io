@@ -46,7 +46,7 @@ function isInCollisionZone(x: number, z: number, margin: number = 0.2): boolean 
 }
 
 // Vitesse de déplacement
-const MOVE_SPEED = 0.04;
+const MOVE_SPEED = 0.02;
 
 // Composant pour les contrôles ZQSD avec ref aux OrbitControls
 function KeyboardControls({ controlsRef }: { controlsRef: React.RefObject<OrbitControlsImpl | null> }) {
