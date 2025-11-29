@@ -9,7 +9,7 @@ import Instructions from './components/UI/Instructions';
 import { RoomModel } from './components/Room/Room';
 import { InteractiveHotspots } from './components/UI/InteractiveHotspots';
 
-// Limites de la chambre (ajuster selon ton modèle)
+// Limites de la chambre
 const ROOM_BOUNDS = {
   minX: 0.3,
   maxX: 2.5,
@@ -20,15 +20,15 @@ const ROOM_BOUNDS = {
 };
 
 // Zones de collision (meubles solides)
-// Format: { minX, maxX, minZ, maxZ }
+
 const COLLISION_ZONES = [
-  // Lit (fond droit de la chambre)
+  // Lit
   { minX: 0, maxX: 1.6, minZ: -1.8, maxZ: 0, name: 'lit' },
   // Bureau
   { minX: 0.0, maxX: 0.9, minZ: -4.3, maxZ: -2.47, name: 'bureau' },
-  // Étagère (côté droit)
+  // Étagère
   { minX: 2.47, maxX: 2.9, minZ: -4.3, maxZ: -3.2, name: 'etagere' },
-  // Placard (les portes blanches au fond)
+  // Placard
   { minX: 1.6, maxX: 2.8, minZ: -0.5, maxZ: 0, name: 'placard' },
   // Piano
   { minX: 0.93, maxX: 1.81, minZ: -4.3, maxZ: -3.88, name: 'piano' }
@@ -46,7 +46,7 @@ function isInCollisionZone(x: number, z: number, margin: number = 0.2): boolean 
 }
 
 // Vitesse de déplacement
-const MOVE_SPEED = 0.05;
+const MOVE_SPEED = 0.04;
 
 // Composant pour les contrôles ZQSD avec ref aux OrbitControls
 function KeyboardControls({ controlsRef }: { controlsRef: React.RefObject<OrbitControlsImpl | null> }) {

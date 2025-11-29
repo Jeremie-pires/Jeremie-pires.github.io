@@ -1,13 +1,8 @@
-/*
-  Composant Room - Charge le modele 3D de la chambre
-  Utilise le modele original pour preserver tous les materiaux
-*/
-
 import { useRef, useMemo } from "react";
 import * as THREE from "three";
 import { useGLTF } from "@react-three/drei";
 
-// URL du modele 3D depuis GitHub Release avec proxy CORS
+// URL du modele 3D stocké sur GitHub release
 const GITHUB_RELEASE_URL =
   "https://github.com/Jeremie-pires/Jeremie-pires.github.io/releases/download/v1.0.0/chambre.glb";
 const MODEL_URL = `https://corsproxy.io/?${encodeURIComponent(
@@ -21,7 +16,7 @@ interface RoomModelProps {
 export function RoomModel(props: RoomModelProps) {
   const groupRef = useRef<THREE.Group>(null);
 
-  // Charger le modele depuis GitHub Releases
+  // Charger le modele 3D
   const { scene } = useGLTF(MODEL_URL);
 
   // Cloner la scene pour eviter les problemes de reference

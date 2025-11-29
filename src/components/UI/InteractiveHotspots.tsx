@@ -21,8 +21,8 @@ import cvIcon from "../../assets/images/icons/cv.png";
 interface Hotspot {
   id: string;
   position: [number, number, number];
-  icon: string; // Peut être un emoji ou un chemin d'image
-  isImage?: boolean; // true si c'est une image, false si c'est un emoji
+  icon: string;
+  isImage?: boolean;
   label: string;
   content: ModalContent;
 }
