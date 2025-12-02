@@ -17,7 +17,7 @@ export const pianoContent: ModalContent = {
       icon: motherboardIcon
     },
     {
-      text: "Je joue beaucoyp aux jeux vidéo, surtout les jeux solos et histoire",
+      text: "Je joue beaucoup aux jeux vidéo, surtout les jeux solos et histoire",
       icon: videogameIcon
     },
     {
