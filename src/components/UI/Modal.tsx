@@ -23,9 +23,10 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
 
   return (
     <>
-      {/* Overlay */}
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-      <div
+      {/* Overlay - Utilise un bouton invisible pour l'accessibilité */}
+      <button
+        type="button"
+        aria-label="Fermer la modale"
         onClick={onClose}
         style={{
           position: "fixed",
@@ -36,6 +37,8 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
           background: "rgba(0, 0, 0, 0.7)",
           zIndex: 999,
           backdropFilter: "blur(5px)",
+          border: "none",
+          cursor: "pointer",
         }}
       />
 
@@ -56,16 +59,14 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
           overflow: "auto",
           zIndex: 1000,
           fontFamily: "system-ui, -apple-system, sans-serif",
-        }}
-      >
+        }}>
         <h2
           style={{
             marginTop: 0,
             color: "#2C3E50",
             fontSize: "28px",
             marginBottom: "15px",
-          }}
-        >
+          }}>
           {content.title}
         </h2>
 
@@ -75,8 +76,7 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
             lineHeight: "1.8",
             fontSize: "16px",
             marginBottom: "20px",
-          }}
-        >
+          }}>
           {content.description}
         </p>
 
@@ -88,8 +88,7 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
               paddingLeft: "20px",
               marginBottom: "20px",
               listStyle: "none",
-            }}
-          >
+            }}>
             {content.items.map((item, index) => (
               <li
                 key={`item-${index}-${item.text.substring(0, 20)}`}
@@ -98,8 +97,7 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
                   display: "flex",
                   alignItems: "center",
                   gap: "8px",
-                }}
-              >
+                }}>
                 {item.icon && (
                   <img
                     src={item.icon}
@@ -149,8 +147,7 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
                   (e.currentTarget.style.background = "#3498db")
                 }
                 onFocus={(e) => (e.currentTarget.style.background = "#2980b9")}
-                onBlur={(e) => (e.currentTarget.style.background = "#3498db")}
-              >
+                onBlur={(e) => (e.currentTarget.style.background = "#3498db")}>
                 {link.icon && (
                   <img
                     src={link.icon}
@@ -185,8 +182,7 @@ const Modal: React.FC<ModalProps> = ({ content, onClose }) => {
           onMouseOver={(e) => (e.currentTarget.style.background = "#c0392b")}
           onMouseOut={(e) => (e.currentTarget.style.background = "#e74c3c")}
           onFocus={(e) => (e.currentTarget.style.background = "#c0392b")}
-          onBlur={(e) => (e.currentTarget.style.background = "#e74c3c")}
-        >
+          onBlur={(e) => (e.currentTarget.style.background = "#e74c3c")}>
           Fermer
         </button>
       </div>
